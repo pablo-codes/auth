@@ -1,7 +1,7 @@
 {
   "name": "auth",
   "version": "0.1.0",
-  "homepage": "https://francisokpani.com/auth/",
+  "homepage": "https://francisokpani.com/",
   "private": false,
   "dependencies": {
     "@react-oauth/google": "^0.11.1",
