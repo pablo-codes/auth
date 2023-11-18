@@ -3,7 +3,7 @@ import axios from 'axios'
 
 
 import LoginServices from '../../services/LoginService';
-import Loader from './Loader';
+
 
 
 const GAuth = () => {
@@ -45,7 +45,7 @@ const GAuth = () => {
 
 
     return (
-        <div><Loader /></div>
+        <div></div>
     )
 }
 
