@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import React, { useState } from "react";
+import SignIn from "./components/SignIn/SignIn";
+import SignUp from "./components/SignIn/SignUp";
+import Pass from "./components/SignIn/Pass";
+import GAuth from "./components/SignIn/GAuth";
 
-function App() {
+const App = () => {
+  const [email, setEmail] = useState('')
+  const [news, setNew] = useState('')
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<SignIn setEmail={setEmail} setNew={setNew} />} />
+        <Route path="/pass" element={<SignUp news={news} email={email} />} />
+        <Route path="/check" element={<Pass news={news} setEmail={setEmail} email={email} setNew={setNew} />} />
+        <Route path="/gauth/session/oauth/google" element={<GAuth />} />
+      </Routes>
+    </>
   );
-}
+};
 
 export default App;
