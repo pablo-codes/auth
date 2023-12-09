@@ -16,6 +16,7 @@ const App = () => {
         <Route path="/pass" element={<SignUp news={news} email={email} />} />
         <Route path="/check" element={<Pass news={news} setEmail={setEmail} email={email} setNew={setNew} />} />
         <Route path="/gauth/session/oauth/google" element={<GAuth />} />
+
       </Routes>
     </>
   );
