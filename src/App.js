@@ -5,6 +5,7 @@ import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignIn/SignUp";
 import Pass from "./components/SignIn/Pass";
 import GAuth from "./components/SignIn/GAuth";
+import GitAuth from "./components/SignIn/GitAuth";
 
 const App = () => {
   const [email, setEmail] = useState('')
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/pass" element={<SignUp news={news} email={email} />} />
         <Route path="/check" element={<Pass news={news} setEmail={setEmail} email={email} setNew={setNew} />} />
         <Route path="/gauth/session/oauth/google" element={<GAuth />} />
+        <Route path="/gauth/session/oauth/github" element={<GitAuth />} />
 
       </Routes>
     </>

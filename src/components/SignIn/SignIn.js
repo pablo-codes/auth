@@ -25,12 +25,19 @@ const SignIn = ({ setEmail, setNew }) => {
 
   const google = () => {
     LoginServices.gauth().then((e) => {
-      window.open(e.data, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes')
+      window.open(e.data, '_blank', 'location=yes,height=570,width=520,left=520,top=150,scrollbars=yes,status=yes')
     }).catch((err) => {
       console.log(err.message)
     })
   }
+  const github = () => {
+    LoginServices.gitauth().then((e) => {
+      window.open(e.data, '_blank', 'location=yes,height=570,width=520,left=520,top=150,scrollbars=yes,status=yes')
+    }).catch((err) => {
+      console.log(err.message)
+    })
 
+  }
   const handlePostChange = (event) => {
     const { name, value } = event.target;
     setDetails({ ...Details, [name]: value });
@@ -89,7 +96,7 @@ const SignIn = ({ setEmail, setNew }) => {
                 />
                 Continue with X
               </div>
-              <div className="form-control search-field md-10">
+              <div className="form-control search-field md-10" onClick={github}>
                 <img src={require("../SignIn/svg/github.png")} alt="github" />
                 Continue with Github
               </div>
