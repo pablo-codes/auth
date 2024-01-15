@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
-
-
+import { useCookies } from 'react-cookie';
 import LoginServices from '../../services/LoginService';
 
 
@@ -10,8 +8,7 @@ import LoginServices from '../../services/LoginService';
 const GAuth = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
-    const [state, Setstate] = useState('')
-    const navigate = useNavigate()
+    const [cookies, setCookies] = useCookies(['token'])
 
 
 
@@ -30,8 +27,15 @@ const GAuth = () => {
                     },
                 })
                 LoginServices.gverify({ token: response.data.access_token }).then((e) => {
-                    console.log(e.data)
-                    Setstate(e.data)
+                    if (e.data.status === true) {
+                        const today = new Date();
+                        const next30Days = new Date(today);
+                        next30Days.setDate(next30Days.getDate() + 30);
+                        setCookies('token', e.data.token, { path: '/', expires: next30Days })
+                        window.close()
+                    } else {
+                        console.log(e.data.err)
+                    }
                 }).catch((err) => {
                     console.log(err)
                 })
@@ -47,7 +51,7 @@ const GAuth = () => {
 
 
     return (
-        <div>{state}</div>
+        <div></div>
     )
 }
 

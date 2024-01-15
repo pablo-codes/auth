@@ -27,16 +27,21 @@ const gparams = () => {
     return https.get(`/api/params/oauth/google`)
 }
 
+
 const gitauth = () => {
     return https.get(`/gitauth`)
-}
-const gitverify = (data) => {
-    return https.post(`/api/sessions/oauth/github`, data)
 }
 const gitparams = (data) => {
     return https.post(`/api/params/oauth/github/`, data)
 }
 
+const xauth = () => {
+    return https.get(`/xauth`)
+}
+const xparams = (data) => {
+    return https.post(`/api/params/oauth/x/`, data)
+}
 
-const LoginServices = { test, verify, check, signin, signup, gauth, gverify, gparams, gitauth, gitparams, gitverify }
+
+const LoginServices = { test, verify, check, signin, signup, gauth, gverify, gparams, gitauth, gitparams, xauth, xparams }
 export default LoginServices

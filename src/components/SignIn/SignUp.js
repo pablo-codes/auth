@@ -60,14 +60,30 @@ const SignUp = ({ email, news }) => {
                 console.log(email, Details.password)
                 if (news === 'true') {
                     LoginServices.signin({ email: email, password: Details.password }).then((e) => {
-                        console.log(e.data)
+                        if (e.data.status === true) {
+                            const today = new Date();
+                            const next30Days = new Date(today);
+                            next30Days.setDate(next30Days.getDate() + 30);
+                            setCookies('token', e.data.data, { path: '/', expires: next30Days })
+                            console.log(e.data.message)
+                        } else {
+                            console.log(e.data.err)
+                        }
                     }).catch((err) => {
                         console.log(err.message)
                     })
                 }
                 else if (news === 'false') {
                     LoginServices.signup({ email: email, password: Details.password }).then((e) => {
-                        console.log(e.data)
+                        if (e.data.status === true) {
+                            const today = new Date();
+                            const next30Days = new Date(today);
+                            next30Days.setDate(next30Days.getDate() + 30);
+                            setCookies('token', e.data.data, { path: '/', expires: next30Days })
+                            console.log(e.data.message)
+                        } else {
+                            console.log(e.data.err)
+                        }
                     }).catch((err) => {
                         console.log(err.message)
                     })

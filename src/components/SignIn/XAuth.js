@@ -4,7 +4,7 @@ import { useCookies } from 'react-cookie';
 
 import LoginServices from '../../services/LoginService';
 
-const GitAuth = () => {
+const XAuth = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
     const [cookies, setCookies] = useCookies(['token'])
@@ -12,7 +12,7 @@ const GitAuth = () => {
 
     useEffect(() => {
         if (code) {
-            LoginServices.gitparams({ code: code }).then((e) => {
+            LoginServices.xparams({ code: code }).then((e) => {
                 if (e.data.status === true) {
                     const today = new Date();
                     const next30Days = new Date(today);
@@ -34,10 +34,8 @@ const GitAuth = () => {
     }, [code])
 
     return (
-        <div>
-
-        </div>
+        <div>XAuth</div>
     )
 }
 
-export default GitAuth
+export default XAuth

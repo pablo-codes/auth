@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./SignIn.css";
 
 import LoginServices from "../../services/LoginService";
+import { useCookies } from "react-cookie";
 // import blogService from '../../services/blogService'
 
 const SignIn = ({ setEmail, setNew }) => {
@@ -11,7 +12,7 @@ const SignIn = ({ setEmail, setNew }) => {
     email: "",
     password: "",
   };
-
+  const [cookies, setCookies] = useCookies(['token'])
   const navigate = useNavigate();
 
   const [Details, setDetails] = useState(initialDetails);
@@ -22,7 +23,9 @@ const SignIn = ({ setEmail, setNew }) => {
       console.log(err)
     })
   }, [])
-
+  useEffect(() => {
+    console.log(cookies.token + ' is present')
+  }, [cookies])
   const google = () => {
     LoginServices.gauth().then((e) => {
       window.open(e.data, '_blank', 'location=yes,height=570,width=520,left=520,top=150,scrollbars=yes,status=yes')
@@ -32,6 +35,14 @@ const SignIn = ({ setEmail, setNew }) => {
   }
   const github = () => {
     LoginServices.gitauth().then((e) => {
+      window.open(e.data, '_blank', 'location=yes,height=570,width=520,left=520,top=150,scrollbars=yes,status=yes')
+    }).catch((err) => {
+      console.log(err.message)
+    })
+
+  }
+  const x = () => {
+    LoginServices.xauth().then((e) => {
       window.open(e.data, '_blank', 'location=yes,height=570,width=520,left=520,top=150,scrollbars=yes,status=yes')
     }).catch((err) => {
       console.log(err.message)
@@ -88,7 +99,7 @@ const SignIn = ({ setEmail, setNew }) => {
               onSubmit={Post}
               noValidate=""
             >
-              <div className="form-control search-field md-10">
+              <div className="form-control search-field md-10" onClick={x}>
                 <img
                   src={require("../SignIn/svg/Twitter.png")}
                   width={"5%"}
