@@ -31,4 +31,4 @@ jobs:
           port: 22
           local_path: "./build/*"
           remote_path: "/public_html/auth/"
-          sftpArgs: "-o ConnectTimeout=5"
+          sftp_only: true
